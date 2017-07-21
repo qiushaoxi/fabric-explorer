@@ -122,7 +122,14 @@ function newRemotes(urls, forPeers, userOnewRemoterg) {
                         if (org[prop]['requests'].indexOf(peerUrl) >= 0) {
                             // found a peer matching the subject url
                             if (forPeers) {
-                                targets.push(client.newPeer('grpc://' + peerUrl));
+								let data = fs.readFileSync(path.join(__dirname, ORGS[key][prop]['tls_cacerts']));
+                                targets.push(client.newPeer(
+									ORGS[key][prop].requests,
+									{
+										pem: Buffer.from(data).toString(),
+										'ssl-target-name-override': ORGS[key][prop]['server-hostname']
+									}
+								));
 
                                 continue outer;
                             } else {
@@ -286,9 +293,9 @@ var getRegisteredUsers = function (username, userOrg, isJson) {
 
 var getOrgAdmin = function (userOrg) {
     var admin = ORGS[userOrg].admin;
-    var keyPath = path.join(__dirname, "../", admin.key);
+    var keyPath = path.join(__dirname, "./", admin.key);
     var keyPEM = Buffer.from(readAllFiles(keyPath)[0]).toString();
-    var certPath = path.join(__dirname, "../", admin.cert);
+    var certPath = path.join(__dirname, "./", admin.cert);
     var certPEM = readAllFiles(certPath)[0].toString();
 
     var client = getClientForOrg(userOrg);
@@ -326,7 +333,7 @@ var getLogger = function (moduleName) {
 
 var getPeerAddressByName = function (org, peer) {
     var address = ORGS[org][peer].requests;
-    return address.split('grpc://')[1];
+    return address.split('grpcs://')[1];
 };
 
 var getOrgs = function () {
