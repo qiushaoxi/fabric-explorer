@@ -1,3 +1,5 @@
+
+debugger;
 var helper=require('./helper.js')
 var query=require('./query.js')
 
@@ -124,8 +126,8 @@ getTxCount().then(txcount=>{
     console.info(txcount)
 })*/
 
-
-query.getBlockByNumber('peer1','mychannel',4,'admin','org1').then(block=>{
+debugger;
+query.getBlockByNumber('peer1','mychannel',0,'admin','org1').then(block=>{
     console.info("==========================================")
     // console.info(JSON.stringify(response_payloads.data.data[0]))
     var block_obj={}

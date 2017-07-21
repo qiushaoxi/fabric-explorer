@@ -12,9 +12,9 @@
       }
    ],
    "mysql":{
-      "host":"172.16.10.162",
+      "host":"localhost",
       "database":"fabricexplorer",
       "username":"root",
-      "passwd":"123456"
+      "passwd":"q"
    }
 }
