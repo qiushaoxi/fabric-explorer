@@ -1,20 +1,13 @@
 /*
- Navicat MySQL Data Transfer
-
- Source Server         : 172.16.10.162
- Source Server Type    : MySQL
- Source Server Version : 50635
- Source Host           : 172.16.10.162
- Source Database       : fabricexplorer
-
- Target Server Type    : MySQL
- Target Server Version : 50635
- File Encoding         : utf-8
-
- Date: 07/07/2017 10:14:31 AM
+ fabric-explorer mysql database
+ http://www.blockchainbtother.com
 */
 
-use fabricexplorer;
+DROP DATABASE IF EXISTS `fabricexplorer`;
+
+CREATE DATABASE fabricexplorer DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci; 
+
+use  fabricexplorer;
 
 SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
